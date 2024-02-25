@@ -8,19 +8,21 @@ class ApiClient {
   Map<String, dynamic>? headers;
   Map<String, dynamic>? queryParameters;
   Map<String, dynamic>? body;
+  RequestMethod requestMethod;
 
-  ApiClient(
-      {required this.baseUrl,
-      required this.path,
-      this.body,
-      this.headers,
-      this.queryParameters});
+  ApiClient({
+    required this.baseUrl,
+    required this.path,
+    this.body,
+    this.headers,
+    this.queryParameters,
+    required this.requestMethod,
+  });
 
   apiRequest({
     Function()? beforeSend,
     Function(dynamic data)? onSuccess,
     Function(dynamic error)? onError,
-    RequestMethod requestMethod = RequestMethod.GET,
   }) {
     if (beforeSend != null) {
       beforeSend();
