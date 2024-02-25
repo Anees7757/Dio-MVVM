@@ -6,11 +6,18 @@ import '../Models/user.dart';
 class ApiRepo {
   apiFetch({
     required String? path,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
     Function()? beforeSend,
     Function(dynamic data)? onSuccess,
     Function(dynamic error)? onError,
   }) {
-    ApiClient(baseUrl: ApiConstants.instance.baseurl, path: path!).apiRequest(
+    ApiClient(
+      baseUrl: ApiConstants.instance.baseurl,
+      path: path!,
+      body: body,
+      queryParameters: queryParameters,
+    ).apiRequest(
       beforeSend: beforeSend ?? beforeSend,
       onSuccess: (data) {
         if (onSuccess != null) {
