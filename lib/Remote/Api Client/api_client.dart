@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../../utils/request_methods.dart';
 
@@ -8,7 +11,7 @@ class ApiClient {
   Map<String, dynamic>? headers;
   Map<String, dynamic>? queryParameters;
   Map<String, dynamic>? body;
-  RequestMethod requestMethod;
+  RequestMethod? requestMethod;
 
   ApiClient({
     required this.baseUrl,
@@ -16,7 +19,7 @@ class ApiClient {
     this.body,
     this.headers,
     this.queryParameters,
-    required this.requestMethod,
+    this.requestMethod,
   });
 
   apiRequest({
@@ -30,7 +33,7 @@ class ApiClient {
     final options = RequestOptions(
       baseUrl: baseUrl,
       path: path,
-      data: body,
+      data: jsonEncode(body),
       headers: headers,
       queryParameters: queryParameters,
       method: requestMethod == RequestMethod.GET ? 'GET' : 'POST',
@@ -39,6 +42,8 @@ class ApiClient {
     Dio().fetch(options).then((value) {
       if (onSuccess != null && value.statusCode == 200) {
         onSuccess(value.data);
+      } else if (onSuccess != null && value.statusCode == 201) {
+        print('Data Added Successfully');
       }
     }).onError((error, stackTrace) {
       onError!(error);

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import '../Constants/api_constants.dart';
 import '../Constants/app_constants.dart';
 import '../Models/post.dart';
+import '../utils/loading_states.dart';
 
 class PostViewModel extends ChangeNotifier {
   List<Post> postsList = [];
@@ -12,7 +13,7 @@ class PostViewModel extends ChangeNotifier {
 
   getData(int userId) {
     ApiRepo().apiFetch(
-      path: '${ApiConstants.instance.posts}?userId=$userId',
+      path: ApiConstants.instance.posts,
       beforeSend: () {
         loadingState = LoadingState.loading;
         print('Processing Data');

@@ -2,7 +2,7 @@ import 'package:api_test_1/Constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:api_test_1/ViewModels/user_viewmodel.dart';
-import '../../utils/loading_states.dart';
+import '../../utils/loading.dart';
 import 'posts_screen.dart';
 import 'todos_screen.dart';
 

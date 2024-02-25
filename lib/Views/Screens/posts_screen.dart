@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:api_test_1/ViewModels/post_viewmodel.dart';
 
 import '../../Constants/app_constants.dart';
-import '../../utils/loading_states.dart';
+import '../../utils/loading.dart';
 
 class PostsScreen extends StatefulWidget {
   final int userId;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:api_test_1/ViewModels/todo_viewmodel.dart';
 
-import '../../utils/loading_states.dart';
+import '../../utils/loading.dart';
 
 class TodosScreen extends StatefulWidget {
   final int userId;
@@ -21,7 +21,9 @@ class _TodosScreenState extends State<TodosScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<TodoViewModel>(context, listen: false).getData(widget.userId);
+      Provider.of<TodoViewModel>(context, listen: false).getData(
+        widget.userId,
+      );
     });
   }
 
